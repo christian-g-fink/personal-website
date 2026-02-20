@@ -1,0 +1,171 @@
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Christian G. Fink, Gonzaga University </title>
+	<link rel="stylesheet" href="research_projects_style.css">
+	<script type="text/javascript" src="jquery-3.1.0.min.js"></script>
+</head>
+
+<body>
+	<div id="container">
+		<div id="content">
+		
+			<div class="pagetitle">
+				Research Projects		
+			</div>
+			
+			<!-- begin dropdown navigation bar -->
+			<div class="nav">
+				<div class="dropdown">
+					<a href="../index.html"> <button class="dropbtn"> Home </button> </a>
+				</div>
+				
+				<div class="vertline"> <!-- vertical line to separate dropdown buttons -->
+				</div>
+				
+				<div class="dropdown">
+				<a href="../teaching/teaching_overview.html"><button class="dropbtn"> Teaching </button></a>
+					<div class="dropdown-content">
+						<a href="../teaching/teaching_overview.html">Overview</a>
+						<a href="../teaching/teaching_courses.html">Courses</a>
+						<a href="../teaching/teaching_resources.html">Pedagogical resources</a>
+					</div>
+				</div>
+				
+				<div class="vertline"> <!-- vertical line to separate dropdown buttons -->
+				</div>
+				
+				<div class="dropdown">
+				<a href="../research/research_projects.html"> <button class="dropbtn"> Research </button> </a>
+					<div class="dropdown-content">
+						<a href="../research/research_projects.html">Projects</a>
+						<a href="../research/research_people.html">People</a>
+						<a href="../research/research_publications.html">Publications</a>
+					</div>
+				</div>
+				
+				<div class="vertline"> <!-- vertical line to separate dropdown buttons -->
+				</div>
+				
+				<div class="dropdown">
+				<a href="../personal/personal_overview.html"><button class="dropbtn"> Personal </button></a>
+					<div class="dropdown-content">
+						<a href="../personal/personal_overview.html">About me</a>
+						<a href="../personal/personal_running.html">Running</a>
+					</div>
+				</div>
+				
+				<div class="vertline"> <!-- vertical line to separate dropdown buttons -->
+				</div>
+				
+				<div class="dropdown">
+					<a href="../cv/fink_cv.pdf"><button class="dropbtn"> CV </button></a>
+					<div class="dropdown-content">
+						<a href="../cv/fink_cv.pdf">View</a> <!-- this doesn't work...need to fix this -->
+						<a href="../cv/fink_cv.pdf" download>Download</a>
+					</div>
+				</div>
+			</div> <!-- end nav -->
+		<!-- hamburger menu for mobile -->
+		<button class="hamburger" onclick="toggleMobileMenu()">&#9776; Menu</button>
+		<div class="mobile-nav" id="mobile-nav">
+			<a href="../index.html">Home</a>
+			<a href="../teaching/teaching_overview.html">Teaching: Overview</a>
+			<a href="../teaching/teaching_courses.html">Teaching: Courses</a>
+			<a href="../teaching/teaching_resources.html">Teaching: Resources</a>
+			<a href="../research/research_projects.html">Research: Projects</a>
+			<a href="../research/research_people.html">Research: People</a>
+			<a href="../research/research_publications.html">Research: Publications</a>
+			<a href="../personal/personal_overview.html">Personal: About me</a>
+			<a href="../personal/personal_running.html">Personal: Running</a>
+			<a href="../cv/fink_cv.pdf">CV: View</a>
+			<a href="../cv/fink_cv.pdf" download>CV: Download</a>
+		</div>
+			
+			<!--begin main text area -->
+			<div class="maintext">
+				Research in my lab applies tools and ways of thinking from physics to interdisciplinary problems. 
+				Our main focus is on the brain: we apply tools and ways of thinking from physics to better understand brain function.
+				One set of particularly useful tools comes network theory, a relatively new field that has drawn many insights
+				from statistical physics. Recent work in my lab has focused on understanding the function of sleep, as well as
+				identifying influential nodes in complex networks.
+
+				<div class="picandtext">
+					<h1> Neuroscience of sleep </h1>
+					<div class="picleft">
+						<img src="sleep_figure.jpg" alt="" />
+					</div>
+					<div class="textright">
+						Developing a unified theory of how the brain works is one of the grandest challenges in all of science. 
+						How do three pounds of flesh generate the feeling of life itself? The answer must somehow lie within 
+						the quadrillions of connections between the 86 billion neurons in a typical human brain. <br>
+						<br>
+						While my lab is unfortunately nowhere close to formulating a grand unified theory of the brain, we are 
+						making progress in understanding how networks of neurons interact to perform specific brain functions. <br>
+						<br>
+						One example is in sleep. During the deepest stage of sleep (N3), neurons in the neocortex undergo a slow rhythm 
+						(around 1 Hz) of waxing and waning activity. These <q>slow waves</q> are associated with memory consolidation and 
+						clearance of metabolic waste products. In a lighter stage of sleep (N2), a different brain rhythm 
+						(so-called <q>sleep spindles</q>) is more prominent. These have been associated with the transfer of 
+						memories from one brain region to another (hippocampus to cortex). <br>
+						<br>
+						The figure to the left shows simulations my lab has performed (in collaboration with Maxim Bazhenov's group at UCSD) 
+						of thalamocortical brain activity during different stages of sleep. Panel A shows a raster plot, with each dot 
+						representing the spike of a particular neuron at a particular point in time. Panel B depicts the spectrogram 
+						of Panel C, which is the simulated local field potential (similar to EEG) of the collective network activity.
+
+					</div>
+				</div>
+				
+				<div class="picandtext">
+					<h1> Network theory </h1>
+					<div class="picleft">
+						<img src="congress_net.jpg" alt="" />
+					</div>
+					<div class="textright">
+						In the last few decades, the advent of the internet and social media has spurred intense interest in understanding structures 
+						and interactions with networks. The nascent field of network theory has grown to involve mathematicians, computer scientists, 
+						engineers, and physicists. Network theory develops tools to analyze any phenomenon that can be represented as a 
+						set of <q>nodes</q> that are connected to one another&mdash;for example, websites connected by hyperlinks, genes connected by 
+						molecular interactions, social network users connected by social ties, etc.<br>
+						<br>
+						One question of particular interest is: given a social network, how can we accurately and efficiently identify the most 
+						influential users? Using Twitter/X as an example, one approach is to use brute force (aka <q>Monte Carlo</q>) simulation to 
+						investigate how many times (on average) a tweet by a given user gets retweeted throughout the network. This is very 
+						computationally expensive and therefore infeasible for large networks. My students and I developed an algorithm, 
+						dubbed the <q>Viral Centrality,</q> that takes a shortcut to computing these results. It is slightly less accurate but 
+						in many cases much faster, making it more useful for real-world application. <br>
+						<br>
+						We tested our algorithm on the network of Twitter interactions between members of the 117th U.S. Congress (visualized in the top graphic). 
+						The bottom figure depicts how many average retweets (or <q>nodes activated</q>) each Congressperson (or <q>seed node,</q> a unique 
+						ID number assigned to each member of Congress) received for a given tweet. Larger values on the y-axis imply greater influence. 
+						Our Viral Centrality results (in red) are virtually identical to the Monte Carlo results (in blue), demonstrating the accuracy 
+						of our network algorithm. (The top four most influential members of Congress are listed with their corresponding data points.)
+
+					</div>
+				</div>
+				
+			</div>
+		</div> <!-- end content -->
+	</div> <!-- end container -->
+	
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-84944506-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	<script>
+		function toggleMobileMenu() {
+			document.getElementById("mobile-nav").classList.toggle("open");
+		}
+	</script>
+</body>
+
+
+</html>

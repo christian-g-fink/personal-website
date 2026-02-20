@@ -1,0 +1,221 @@
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Christian G. Fink, Gonzaga University </title>
+	<link rel="stylesheet" href="teaching_resources_style.css">
+	<script type="text/javascript" src="jquery-3.1.0.min.js"></script>
+</head>
+
+<body>
+	<div id="container">
+		<div id="content">
+		
+			<div class="pagetitle">
+				Teaching: Resources	
+			</div>
+			
+			<!-- begin dropdown navigation bar -->
+			<div class="nav">
+				<div class="dropdown">
+					<a href="../index.html"> <button class="dropbtn"> Home </button> </a>
+				</div>
+				
+				<div class="vertline"> <!-- vertical line to separate dropdown buttons -->
+				</div>
+				
+				<div class="dropdown">
+				<a href="../teaching/teaching_overview.html"><button class="dropbtn"> Teaching </button></a>
+					<div class="dropdown-content">
+						<a href="../teaching/teaching_overview.html">Overview</a>
+						<a href="../teaching/teaching_courses.html">Courses</a>
+						<a href="../teaching/teaching_resources.html">Pedagogical resources</a>
+					</div>
+				</div>
+				
+				<div class="vertline"> <!-- vertical line to separate dropdown buttons -->
+				</div>
+				
+				<div class="dropdown">
+				<a href="../research/research_projects.html"> <button class="dropbtn"> Research </button> </a>
+					<div class="dropdown-content">
+						<a href="../research/research_projects.html">Projects</a>
+						<a href="../research/research_people.html">People</a>
+						<a href="../research/research_publications.html">Publications</a>
+					</div>
+				</div>
+				
+				<div class="vertline"> <!-- vertical line to separate dropdown buttons -->
+				</div>
+				
+				<div class="dropdown">
+				<a href="../personal/personal_overview.html"><button class="dropbtn"> Personal </button></a>
+					<div class="dropdown-content">
+						<a href="../personal/personal_overview.html">About me</a>
+						<a href="../personal/personal_running.html">Running</a>
+					</div>
+				</div>
+				
+				<div class="vertline"> <!-- vertical line to separate dropdown buttons -->
+				</div>
+				
+				<div class="dropdown">
+					<a href="../cv/fink_cv.pdf"><button class="dropbtn"> CV </button></a>
+					<div class="dropdown-content">
+						<a href="../cv/fink_cv.pdf">View</a> <!-- this doesn't work...need to fix this -->
+						<a href="../cv/fink_cv.pdf" download>Download</a>
+					</div>
+				</div>
+			</div> <!-- end nav -->	<!-- end dropdown navigation bar -->
+		<!-- hamburger menu for mobile -->
+		<button class="hamburger" onclick="toggleMobileMenu()">&#9776; Menu</button>
+		<div class="mobile-nav" id="mobile-nav">
+			<a href="../index.html">Home</a>
+			<a href="../teaching/teaching_overview.html">Teaching: Overview</a>
+			<a href="../teaching/teaching_courses.html">Teaching: Courses</a>
+			<a href="../teaching/teaching_resources.html">Teaching: Resources</a>
+			<a href="../research/research_projects.html">Research: Projects</a>
+			<a href="../research/research_people.html">Research: People</a>
+			<a href="../research/research_publications.html">Research: Publications</a>
+			<a href="../personal/personal_overview.html">Personal: About me</a>
+			<a href="../personal/personal_running.html">Personal: Running</a>
+			<a href="../cv/fink_cv.pdf">CV: View</a>
+			<a href="../cv/fink_cv.pdf" download>CV: Download</a>
+		</div>
+			
+			<!--begin main text area -->
+			<div class="maintext">
+
+				<div class="picandtext">
+					<div class="picleft">
+						<a href="./teaching_resources/memory_app.html">
+							<img src="memory_model_icon.jpg" alt="" />
+						</a>
+					</div>
+					<div class="textright">
+						<font color = "51759A"><b>Auto-associative memory interactive simulation:</b></font> This is an 
+						<a href="./teaching_resources/memory_app.html">applet</a>
+						for exploring computational models of memory formation, as inspired by Donald Hebb and John Hopfield 
+						(the 2024 physics Nobel laureate). It is
+						based on exercises from Tom Anastasio's <i> Tutorial on Neural Systems Modeling.</i>
+						Instructors are encouraged to use <a href="./teaching_resources/student_memory_exercise.docx"> 
+						this in-class exercise</a> to accompany
+						the app. If you are an instructor interested in solutions to this exercise, contact me at finkt [at] gonzaga.edu.
+					</div>
+				</div>
+
+				<br>
+				<br>
+
+				<div class="picandtext">
+						<div class="picleft">
+							<a href="./teaching_resources/rotating_frame_animations.zip">
+								<img src="rotation_icon.jpg" alt="" />
+							</a>
+						</div>
+						<div class="textright">
+							<font color = "51759A"><b>Rotating reference frame animations:</b></font> 
+							<a href="./teaching_resources/rotating_frame_animations.zip">This zip file</a>
+							contains animations to help mechanics students visualize the rotation of a disc in both the "space frame" and 
+							the "body frame." I showed these animations in conjunction 
+							with a lecture on "Euler's equations with zero torque" (adapted from Section 10.8 of Taylor's <i> Classical
+							Mechanics</i>). I also highlighted the story of Feynman's wobbling plate, and how it served as the inspiration
+							for Feynman to ultimately formulate quantum electrodynamics (see Chapter 5 of James Gleick's <i>Genius</i>, or 
+							Part 5 of <i>Surely You're Joking, Mr. Feynman!</i>). Source code for generating the animations is also included.
+						</div>
+				</div>
+
+				<br>
+				<br>
+				
+				<div class="picandtext">
+						<div class="picleft">
+							<a href="./teaching_resources/fink_comp_neuro.zip">
+								<img src="compneuro_icon.jpg" alt="" />
+							</a>
+						</div>
+						<div class="textright">
+							<font color = "51759A"><b>Computational Neuroscience course resources:</b></font> 
+							<a href="./teaching_resources/fink_comp_neuro.zip">This zip file</a>
+							includes homework, laboratory exercises, lecture slides, and the syllabus from my algebra-based
+							Computational Neuroscience course. It includes everything except for the 
+							<a href="./teaching_resources/fluo_10x.zip"> data file for Lab 10</a> (linked separately
+							to make the main download faster). Please contact me (finkt [at] gonzaga.edu) if you are an instructor
+							and would like solutions to the homework, lab, and exams.
+						</div>
+				</div>
+
+				<br>
+				<br>
+				
+				<div class="picandtext">
+						<div class="picleft">
+							<a href="./teaching_resources/matlab_introduction.zip">
+								<img src="Matlab_icon.png" alt="" />
+							</a>
+						</div>
+						<div class="textright">
+							<font color = "51759A"><b>Introduction to MATLAB:</b></font> 
+							MATLAB (which stands for MATrix LABoratory) is a high-level programming language that is 
+							very useful for data analysis. <a href="./teaching_resources/matlab_introduction.zip">This</a> is a very brief introduction to getting started with MATLAB.
+						</div>
+				</div>
+				
+				<br>
+				<br>
+
+				<div class="picandtext">
+						<div class="picleft">
+							<a href="./teaching_resources/filtering_app.zip">
+								<img src="filtering_icon.jpg" alt="" />
+							</a>
+						</div>
+						<div class="textright">
+							<font color = "51759A"><b>Introduction to filtering app:</b></font> 
+							<a href="./teaching_resources/filtering_app.zip">This MATLAB-based GUI</a> enables students to apply basic filters to three different signals 
+							(data related to sunspots, the stock market, and brain waves). Students can also import their own time series and apply either low-pass, 
+							band-pass, or high-pass filters. <a href="./teaching_resources/filtering_exercise.docx">This document</a> walks students through 
+							some very basic filtering exercises.
+						</div>
+				</div>
+				
+				<br>
+				<br>
+				
+				<div class="picandtext">
+						<div class="picleft">
+							<a href="./teaching_resources/intro_to_NEURON.docx">
+								<img src="Neuron.png" alt="" />
+							</a>
+						</div>
+						<div class="textright">
+							<font color = "51759A"><b>Introduction to the NEURON simulator:</b></font> 
+							<a href="./teaching_resources/intro_to_NEURON.docx">This document</a> walks you through running simple simulations
+							in NEURON. You can either set up your own simulation or download and run previously written code from ModelDB. This short
+							introduction is adapted from material presented at the NEURON Summer Course.
+						</div>
+				</div>
+
+			</div>
+		</div> <!-- end content -->
+	</div> <!-- end container -->
+	
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-84944506-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	<script>
+		function toggleMobileMenu() {
+			document.getElementById("mobile-nav").classList.toggle("open");
+		}
+	</script>
+</body>
+
+
+</html>

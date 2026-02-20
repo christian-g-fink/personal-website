@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://chrisfink.xyz/</loc>
+  <lastmod>2017-01-01T19:58:01+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/personal/personal_overview.html</loc>
+  <lastmod>2017-01-01T19:58:30+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/teaching/teaching_overview.html</loc>
+  <lastmod>2017-01-01T19:59:49+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/research/research_projects.html</loc>
+  <lastmod>2017-01-01T19:59:26+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/cv/cv_view.html</loc>
+  <lastmod>2016-09-28T21:08:56+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/index.html</loc>
+  <lastmod>2017-01-01T19:58:01+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/teaching/teaching_courses.html</loc>
+  <lastmod>2017-01-01T19:59:48+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/teaching/teaching_resources.html</loc>
+  <lastmod>2017-01-01T19:59:51+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/research/research_people.html</loc>
+  <lastmod>2017-01-01T19:59:24+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/research/research_publications.html</loc>
+  <lastmod>2017-01-01T19:59:27+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/personal/personal_travel.html</loc>
+  <lastmod>2017-01-01T19:58:32+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/personal/personal_running.html</loc>
+  <lastmod>2017-01-01T19:58:31+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/cv/fink_cv.pdf</loc>
+  <lastmod>2016-11-08T01:12:27+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/teaching/teaching_resources/student_memory_exercise.docx</loc>
+  <lastmod>2016-10-09T13:28:22+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/research/publications/fink_mofakham_paper.pdf</loc>
+  <lastmod>2016-11-08T01:10:26+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/research/publications/fink_ijns_paper.pdf</loc>
+  <lastmod>2016-10-11T00:40:58+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/research/publications/fink_ajp_paper.pdf</loc>
+  <lastmod>2016-09-21T02:33:07+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/research/publications/fink_eneuro_2015.pdf</loc>
+  <lastmod>2016-09-21T02:33:30+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/research/publications/fink_mixed_excitability_paper.pdf</loc>
+  <lastmod>2016-09-21T02:35:03+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/research/publications/fink_stdp_ieee_paper.pdf</loc>
+  <lastmod>2016-09-21T02:35:11+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/research/publications/fink_synrenorm_plos_comp_bio.pdf</loc>
+  <lastmod>2016-09-21T02:35:30+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/research/publications/fink_prc_textbook_chapter.pdf</loc>
+  <lastmod>2016-09-21T02:35:05+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://chrisfink.xyz/research/publications/fink_ach_plos_comp_bio.pdf</loc>
+  <lastmod>2016-09-21T02:32:57+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.51</priority>
+</url>
+</urlset>

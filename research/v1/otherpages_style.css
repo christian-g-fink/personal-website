@@ -1,0 +1,124 @@
+ @import 'https://fonts.googleapis.com/css?family=Muli|Noto+Serif|Oswald|Ubuntu';
+ 
+ body {
+	font-size:16px; 
+	margin: 0;
+}	
+
+.content {
+	margin: auto;
+	background-color: white; /* DBD8D7 is a nice light gray */
+	color: black;
+	float: left;
+	width: 80%;
+	height: 100%;
+} 
+
+/* p. 362 of textbook gives a place to start for sidebar */
+.sidebar { 
+  /* max-width: 300px; 
+  position: absolute; 
+  top: 0;
+  left: 0; */
+  float: left;
+  min-width: 20%;
+  background-color:305D93;
+  -webkit-box-shadow: inset -12px 0 10px -3px  white; 
+  -moz-box-shadow: inset -12px 0 10px -3px  white; 
+  box-shadow: inset -12px 0 10px -3px  white;  /* http://stackoverflow.com/questions/17572619/inset-box-shadow-only-on-one-side */
+} 
+
+.itembox {
+	/* display:inline-block; */
+	font-size: 1.5em;
+	font-family: 'Ubuntu',monospace;
+	border: 3px solid white;
+	border-radius: 15px; /* can make these circles by making border-radius really large */
+	color:white ;
+	/* background-color:305D93; */
+	max-width: 150px;
+	padding: 0px 10px;
+	height: 50px;
+	overflow: hidden;
+	text-align: center; 
+	vertical-align: middle;
+	line-height: 50px; /* need to specify line height to be equal to box height in order for vertical alignment to work */
+	margin: 20px auto;
+}
+
+.itembox:hover{
+	background-color:white;
+	color:305D93;
+	border-color:305D93;
+}
+
+.itembox a {
+	text-decoration: inherit;
+	color:inherit;
+}
+
+.pagetitle {
+	color: 305D93;
+	font-size: 3em;
+	max-width: 500px;
+	margin: auto;
+	text-align:center;
+	font-family: 'Ubuntu',monospace;
+	line-height: 2em;
+}
+
+.nav {
+	text-align:center;
+}
+
+.navoption{
+	display:inline-block;
+	font-size: 1.5em;
+	font-family: 'Ubuntu',monospace;
+	border: 5px solid white;
+	border-radius: 25px; /* can make these circles by making border-radius really large */
+	color:5A6163 ;
+	/* background-color:305D93; */
+	width: 150px;
+	height: 75px;
+	line-height: 75px; /* need to specify line height to be equal to box height in order for vertical alignment to work */
+	overflow: hidden;
+	text-align: center; 
+	vertical-align: middle;
+	margin: 20px 20px;
+}
+
+.navoption:hover{
+	border-color: 5A6163;
+}
+
+.navoption a {
+	text-decoration: inherit;
+	color:inherit;
+}
+
+.selectednavoption{
+	display:inline-block;
+	font-size: 1.5em;
+	font-family: 'Ubuntu',monospace;
+	border: 5px solid white;
+	border-radius: 25px; /* can make these circles by making border-radius really large */
+	color:white;
+	background-color:5A6163;
+	width: 150px;
+	height: 75px;
+	line-height: 75px; /* need to specify line height to be equal to box height in order for vertical alignment to work */
+	overflow: hidden;
+	text-align: center; 
+	vertical-align: middle;
+	margin: 20px 20px;
+}
+
+.maintext{
+	clear:both;
+	max-width:800px;
+	margin: auto;
+	color:black;
+	/* background-color:red; */
+	font-size:1.25em;
+}

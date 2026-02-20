@@ -1,0 +1,99 @@
+@import 'https://fonts.googleapis.com/css?family=Muli|Noto+Serif|Oswald|Ubuntu';
+
+body {
+	background-color: 51759A;/*#305D93; */
+	font-size:16px; 
+}	
+
+a {
+	text-decoration: inherit;
+	color:inherit;
+}
+
+.wrapper {
+	max-width: 1000px;
+	margin: auto;
+	/* position: absolute;
+	top:15%;
+	left:25%; */
+}
+
+.bigname{
+	margin:auto;
+	font-family: 'Muli',monospace;
+	font-size: 3em;
+	color: white; 
+	max-width: 600px;
+	text-align: center;
+	line-height: 150px; /* just gives some extra space above and below the letters */
+}
+
+.nav {
+	text-align:center;
+}
+
+.itembox {
+	display:inline-block;
+	font-size: 1.5em;
+	font-family: 'Ubuntu',Sans-Serif;
+	border: 5px solid white;
+	border-radius: 25px; /* can make these circles by making border-radius really large */
+	color:white ;
+	/* background-color:305D93; */
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	text-align: center; 
+	vertical-align: middle;
+	line-height: 150px; /* need to specify line height to be equal to box height in order for vertical alignment to work */
+	margin: 20px 20px;
+}
+
+.itembox:hover{
+	background-color:white;
+	color:305D93;
+	border-color:305D93;
+}
+
+.homepagetext {
+	clear:both;
+	margin:auto;
+	font-family: 'Noto Serif',Sans-Serif;
+	color: white; 
+	max-width: 600px;
+	text-align: justify;
+}
+
+.contactinfo {
+	margin:auto;
+	font-family: 'Noto Serif',Sans-Serif;
+	color: white; 
+	max-width: 600px;
+	text-align: center;
+}
+/* ===== MOBILE RESPONSIVE LAYOUT ===== */
+@media screen and (max-width: 600px) {
+    .bigname {
+        font-size: 2em;
+        line-height: 1.5em;
+        padding: 20px 10px;
+    }
+
+    .nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .itembox {
+        width: 120px;
+        height: 120px;
+        line-height: 120px;
+        font-size: 1.2em;
+        margin: 10px;
+    }
+
+    .homepagetext, .contactinfo {
+        margin: 0 1em;
+    }
+}

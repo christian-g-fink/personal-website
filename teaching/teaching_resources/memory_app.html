@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hebbian/Hopfield Memory Model</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; font-size: 16px; background: #555; padding: 24px 0; }
+button, select, input { font-size: inherit; }
+#app-title { display: flex; align-items: center; justify-content: center; gap: 12px; color: #555; background: white; font-size: 24px; padding: 12px 24px; }
+#app-title img { height: 48px; width: auto; }
+#app { display: flex; flex-direction: column; width: fit-content; margin: 0 auto; border: 4px solid black; }
+#app-title, #encoding, #storage { border-bottom: 2px solid black; }
+
+#encoding  { background: lightsalmon; padding: 12px 16px; }
+#storage   { display: flex; align-items: center; background: white; padding-left: 8px; }
+#retrieval { background: lightblue; padding: 12px 16px; }
+
+/* Vertical section labels */
+.section-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 3px;
+  padding-right: 4px;
+  margin-right: 24px;
+  align-self: center;
+}
+
+/* Encoding / Retrieval flex wrappers */
+.enc-wrap, .ret-wrap { display: flex; align-items: flex-start; }
+
+/* Row layout */
+.enc-header-row, .enc-pattern-row,
+.ret-header-row, .ret-input-row, .ret-output-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3px;
+}
+
+.row-label     { width: 80px; font-size: 16px; }
+.ret-row-label { width: 90px; font-size: 16px; }
+.neuron-num    { width: 24px; text-align: center; font-size: 16px; }
+
+/* Neuron toggle squares (encoding + retrieval input) */
+.ntog { display: none; }
+.ntog + label {
+  display: inline-block;
+  width: 22px; height: 22px;
+  background: ButtonFace;
+  border: 1px solid #777;
+  cursor: pointer;
+  margin: 1px;
+}
+.ntog:checked + label { background: red; }
+
+/* Output squares (retrieval output – non-interactive) */
+.out-sq {
+  display: inline-block;
+  width: 22px; height: 22px;
+  background: ButtonFace;
+  border: 1px solid #777;
+  margin: 1px;
+}
+.out-sq.on { background: red; }
+
+/* Random-pattern controls */
+.rand-controls { display: flex; align-items: center; gap: 5px; margin-left: 10px; font-size: 16px; }
+.rand-controls button { font-size: 16px; padding: 2px 8px; cursor: pointer; }
+#clear-btn { margin-bottom: 6px; font-size: 16px; cursor: pointer; }
+
+/* Storage section */
+#net-svg { flex: 0 0 600px; height: 360px; display: block; }
+#storage-controls {
+  flex: 0 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 7px;
+  justify-content: center;
+}
+.learn-rule-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 16px; }
+#learning-rule { font-size: 16px; }
+#storage-controls button { padding: 8px 14px; font-size: 16px; cursor: pointer; }
+#learn-btn, #erase-btn { font-weight: bold; padding: 11px 8px; font-size: 16px; }
+
+/* Retrieval controls */
+.ret-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-left: 14px;
+  font-size: 16px;
+  align-self: center;
+}
+.use-pat-row { display: flex; align-items: center; gap: 5px; }
+.ret-controls button { font-size: 16px; cursor: pointer; padding: 6px 12px; }
+.compute-reset-row { display: flex; gap: 8px; }
+#time-label { font-size: 16px; }
+</style>
+</head>
+<body>
+
+<div id="app">
+
+<h1 id="app-title"><img src="memory_model_icon.jpg" alt="Memory model icon">Computational Models of Memory</h1>
+
+<!-- ===== ENCODING ===== -->
+<section id="encoding">
+  <div class="enc-wrap">
+    <div class="section-label">ENCODING</div>
+    <div>
+      <button id="clear-btn" onclick="clearPatterns()">Clear All</button>
+      <div id="enc-grid"><!-- built by JS --></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STORAGE ===== -->
+<section id="storage">
+  <div class="section-label">STORAGE</div>
+  <svg id="net-svg" viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg">
+    <!-- built by JS -->
+  </svg>
+  <div id="storage-controls">
+    <div class="learn-rule-row">
+      Use
+      <select id="learning-rule">
+        <option>Hebbian</option>
+        <option>Hopfield</option>
+      </select>
+      learning rule
+    </div>
+    <button id="learn-btn" onclick="learnAll()">LEARN</button>
+    <button onclick="learnPatByPat()">Learn: Pattern-by-Pattern</button>
+    <button onclick="learnCellByCell()">Learn: Cell-by-Cell</button>
+    <button onclick="learnConByCon()">Learn: Connection-by-Connection</button>
+    <div style="margin-top:4px;"></div>
+    <button id="erase-btn" onclick="eraseLearning()">Erase Learning &amp; Reset</button>
+  </div>
+</section>
+
+<!-- ===== RETRIEVAL ===== -->
+<section id="retrieval">
+  <div class="ret-wrap">
+    <div class="section-label">RETRIEVAL</div>
+    <div>
+      <div id="ret-grid"><!-- built by JS --></div>
+    </div>
+    <div class="ret-controls">
+      <div class="use-pat-row">
+        <button onclick="usePattern()">Use pattern</button>
+        number
+        <select id="use-pat-num">
+          <option>1</option><option>2</option><option>3</option>
+          <option>4</option><option>5</option>
+        </select>
+      </div>
+      <div class="compute-reset-row">
+        <button id="compute-btn" onclick="computeOutput()">Compute Output</button>
+        <button onclick="resetInputOutput()">Reset</button>
+      </div>
+      <div>
+        <span id="time-label"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- #app -->
+
+<script>
+const N = 20, NP = 5;
+
+// Weight matrix
+let W = Array.from({length: N}, () => new Array(N).fill(0));
+
+// Incremental learning state
+let lPat = 0;
+let lCellPat = 0, lCellCell = 0;
+let lConPat = 0, lConCell = 0, lConCon = 1;
+
+// ── DOM builders ──────────────────────────────────────────────────────────────
+
+function buildEncGrid() {
+  let html = '';
+
+  // Column header row
+  html += '<div class="enc-header-row">';
+  html += '<div class="row-label" style="font-weight:bold;">Neuron number</div>';
+  for (let n = 0; n < N; n++) html += `<div class="neuron-num">${n+1}</div>`;
+  html += '</div>';
+
+  // One row per pattern
+  for (let p = 0; p < NP; p++) {
+    html += '<div class="enc-pattern-row">';
+    html += `<div class="row-label">Pattern #${p+1}</div>`;
+    for (let n = 0; n < N; n++) {
+      html += `<input type="checkbox" class="ntog" id="enc-${p}-${n}">`;
+      html += `<label for="enc-${p}-${n}"></label>`;
+    }
+    html += '<div class="rand-controls">';
+    html += `<button onclick="randPattern(${p})">Generate Random Pattern</button>`;
+    html += ' with ';
+    html += `<select id="rn-${p}">`;
+    for (const v of [1, 2, 3, 4, 5, 10])
+      html += `<option${v === 2 ? ' selected' : ''}>${v}</option>`;
+    html += '</select> neuron(s) activated</div>';
+    html += '</div>';
+  }
+
+  document.getElementById('enc-grid').innerHTML = html;
+}
+
+function buildRetGrid() {
+  let html = '';
+
+  // Column header row
+  html += '<div class="ret-header-row">';
+  html += '<div class="ret-row-label" style="font-weight:bold;">Neuron number</div>';
+  for (let n = 0; n < N; n++) html += `<div class="neuron-num">${n+1}</div>`;
+  html += '</div>';
+
+  // Input row
+  html += '<div class="ret-input-row">';
+  html += '<div class="ret-row-label">Input Pattern</div>';
+  for (let n = 0; n < N; n++) {
+    html += `<input type="checkbox" class="ntog" id="ri-${n}">`;
+    html += `<label for="ri-${n}"></label>`;
+  }
+  html += '</div>';
+
+  // Output row (display only)
+  html += '<div class="ret-output-row">';
+  html += '<div class="ret-row-label">Output Pattern</div>';
+  for (let n = 0; n < N; n++) html += `<div class="out-sq" id="ro-${n}"></div>`;
+  html += '</div>';
+
+  document.getElementById('ret-grid').innerHTML = html;
+}
+
+function buildSVG() {
+  const svg = document.getElementById('net-svg');
+  const ns  = 'http://www.w3.org/2000/svg';
+  const circR = 150, cx = 200, cy = 185, nRad = 18, conR = circR - nRad;
+
+  // Precompute neuron centres and inner connection-point positions
+  const nx = [], ny = [], lx = [], ly = [];
+  for (let i = 0; i < N; i++) {
+    const a = (i / N) * 2 * Math.PI;
+    nx.push(cx + circR * Math.sin(a));
+    ny.push(cy - circR * Math.cos(a));
+    lx.push(cx + conR  * Math.sin(a));
+    ly.push(cy - conR  * Math.cos(a));
+  }
+
+  // Helper: create an SVG element, set its attributes, append to svg
+  function el(tag, attrs, text) {
+    const e = document.createElementNS(ns, tag);
+    for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+    if (text !== undefined) e.textContent = text;
+    svg.appendChild(e);
+    return e;
+  }
+
+  // Connection lines (drawn first so they appear behind neuron circles)
+  for (let i = 0; i < N; i++)
+    for (let j = i + 1; j < N; j++)
+      el('line', {
+        id: `ln-${i}-${j}`,
+        x1: lx[i].toFixed(1), y1: ly[i].toFixed(1),
+        x2: lx[j].toFixed(1), y2: ly[j].toFixed(1),
+        stroke: 'transparent', 'stroke-width': '1'
+      });
+
+  // Neuron circles + number labels
+  for (let i = 0; i < N; i++) {
+    el('circle', { cx: nx[i].toFixed(1), cy: ny[i].toFixed(1), r: nRad, fill: 'black' });
+    el('text', {
+      x: nx[i].toFixed(1), y: ny[i].toFixed(1),
+      'text-anchor': 'middle', 'dominant-baseline': 'middle',
+      fill: 'white', 'font-size': '16'
+    }, String(i + 1));
+  }
+
+
+  // Legend
+  el('line', { x1:'375', y1:'40', x2:'415', y2:'40', stroke:'blue', 'stroke-width':'2' });
+  el('text', { x:'420', y:'40', 'dominant-baseline':'middle', 'font-size':'16' }, 'Excitatory connections');
+  el('line', { x1:'375', y1:'65', x2:'415', y2:'65', stroke:'red',  'stroke-width':'2' });
+  el('text', { x:'420', y:'65', 'dominant-baseline':'middle', 'font-size':'16' }, 'Inhibitory connections');
+
+  // Title text (updated during learning animations)
+  el('text', { id:'svg-title', x:'200', y:'12', 'text-anchor':'middle', 'font-size':'16' }, '');
+}
+
+// ── Utility helpers ───────────────────────────────────────────────────────────
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+function getPattern(p) {
+  return Array.from({length: N}, (_, n) =>
+    document.getElementById(`enc-${p}-${n}`).checked ? 1 : 0);
+}
+
+function getInput() {
+  return Array.from({length: N}, (_, n) =>
+    document.getElementById(`ri-${n}`).checked ? 1 : 0);
+}
+
+function setInput(arr) {
+  for (let n = 0; n < N; n++)
+    document.getElementById(`ri-${n}`).checked = !!arr[n];
+}
+
+function setOutput(arr) {
+  for (let n = 0; n < N; n++)
+    document.getElementById(`ro-${n}`).classList.toggle('on', !!arr[n]);
+}
+
+function setSvgTitle(t) { document.getElementById('svg-title').textContent = t; }
+
+function updateSVG() {
+  for (let i = 0; i < N; i++) {
+    for (let j = i + 1; j < N; j++) {
+      const line = document.getElementById(`ln-${i}-${j}`);
+      const w = W[i][j];
+      line.setAttribute('stroke', w > 0 ? 'blue' : w < 0 ? 'red' : 'transparent');
+      line.setAttribute('stroke-width', w !== 0 ? String(Math.abs(w)) : '1');
+    }
+  }
+}
+
+// ── Encoding interactions ─────────────────────────────────────────────────────
+
+function clearPatterns() {
+  for (let p = 0; p < NP; p++)
+    for (let n = 0; n < N; n++)
+      document.getElementById(`enc-${p}-${n}`).checked = false;
+}
+
+function randPattern(p) {
+  // Clear this pattern row first
+  for (let n = 0; n < N; n++) document.getElementById(`enc-${p}-${n}`).checked = false;
+  const count = parseInt(document.getElementById(`rn-${p}`).value);
+  // Fisher-Yates shuffle to pick 'count' distinct neurons
+  const idx = Array.from({length: N}, (_, i) => i);
+  for (let i = N - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [idx[i], idx[j]] = [idx[j], idx[i]];
+  }
+  for (let k = 0; k < count; k++)
+    document.getElementById(`enc-${p}-${idx[k]}`).checked = true;
+}
+
+// ── Learning helpers ──────────────────────────────────────────────────────────
+
+function resetW() {
+  W = Array.from({length: N}, () => new Array(N).fill(0));
+}
+
+// Add the outer product of (possibly transformed) pattern to W
+function applyLearning(pat) {
+  const rule = document.getElementById('learning-rule').value;
+  const p = rule === 'Hopfield' ? pat.map(v => 2 * v - 1) : pat;
+  for (let i = 0; i < N; i++)
+    for (let j = 0; j < N; j++)
+      W[i][j] += p[i] * p[j];
+}
+
+// ── Learning buttons ──────────────────────────────────────────────────────────
+
+// LEARN: all patterns at once, with a brief animation pause between each
+async function learnAll() {
+  resetW();
+  setSvgTitle('');
+  updateSVG();
+  for (let i = 0; i < NP; i++) {
+    const pat = getPattern(i);
+    if (pat.some(v => v > 0)) {
+      setSvgTitle(`Pattern ${i + 1}`);
+      applyLearning(pat);
+      updateSVG();
+      await sleep(300);
+      setSvgTitle('');
+    }
+  }
+}
+
+// Add the next full pattern on each click
+function learnPatByPat() {
+  setSvgTitle('');
+  if (lPat === NP) { setSvgTitle('Finished Learning'); return; }
+  setSvgTitle(`Pattern #${lPat + 1}`);
+  const pat = getPattern(lPat);
+  if (pat.some(v => v > 0)) { applyLearning(pat); updateSVG(); }
+  lPat++;
+}
+
+// Add all connections for the next cell on each click
+function learnCellByCell() {
+  setSvgTitle('');
+  if (lCellPat === NP) { setSvgTitle('Finished Learning'); return; }
+  setSvgTitle(`Pattern #${lCellPat + 1}, Cell #${lCellCell + 1}`);
+  const pat = getPattern(lCellPat);
+  if (pat.some(v => v > 0)) {
+    const rule = document.getElementById('learning-rule').value;
+    for (let j = lCellCell + 1; j < N; j++) {
+      if (rule === 'Hebbian') {
+        if (pat[lCellCell] && pat[j]) { W[lCellCell][j]++; W[j][lCellCell]++; }
+      } else {
+        const d = (pat[lCellCell] === pat[j]) ? 1 : -1;
+        W[lCellCell][j] += d; W[j][lCellCell] += d;
+      }
+    }
+    updateSVG();
+  }
+  lCellCell++;
+  if (lCellCell === N - 1) { lCellPat++; lCellCell = 0; }
+}
+
+// Add one connection on each click
+function learnConByCon() {
+  setSvgTitle('');
+  if (lConPat === NP) { setSvgTitle('Finished Learning'); return; }
+  setSvgTitle(`Pattern #${lConPat + 1}, Cell #${lConCell + 1}, Connection #${lConCon + 1}`);
+  const pat = getPattern(lConPat);
+  if (pat.some(v => v > 0)) {
+    const rule = document.getElementById('learning-rule').value;
+    if (rule === 'Hebbian') {
+      if (pat[lConCell] && pat[lConCon]) { W[lConCell][lConCon]++; W[lConCon][lConCell]++; }
+    } else {
+      const d = (pat[lConCell] === pat[lConCon]) ? 1 : -1;
+      W[lConCell][lConCon] += d; W[lConCon][lConCell] += d;
+    }
+    updateSVG();
+  }
+  lConCon++;
+  if (lConCon === N) {
+    lConCell++;
+    lConCon = lConCell + 1;
+    if (lConCell === N - 1) { lConPat++; lConCell = 0; lConCon = 1; }
+  }
+}
+
+function eraseLearning() {
+  setSvgTitle('');
+  resetW();
+  updateSVG();
+  lPat = 0;
+  lCellPat = 0; lCellCell = 0;
+  lConPat = 0;  lConCell = 0; lConCon = 1;
+}
+
+// ── Retrieval ─────────────────────────────────────────────────────────────────
+
+function usePattern() {
+  const p = parseInt(document.getElementById('use-pat-num').value) - 1;
+  setInput(getPattern(p));
+}
+
+// Asynchronous update: 50 steps, one random neuron updated per step
+async function computeOutput() {
+  const y = getInput();
+  setOutput(y);
+  for (let t = 0; t < 50; t++) {
+    const r = Math.floor(Math.random() * N);
+    let q = 0;
+    for (let j = 0; j < N; j++) q += W[r][j] * y[j];
+    y[r] = q > 0 ? 1 : 0;
+    setOutput(y);
+    document.getElementById('time-label').textContent = `Time = ${t}`;
+    await sleep(50);
+  }
+  document.getElementById('time-label').textContent = 'Finished';
+}
+
+function resetInputOutput() {
+  setInput(new Array(N).fill(0));
+  setOutput(new Array(N).fill(0));
+  document.getElementById('time-label').textContent = '';
+}
+
+// ── Initialise ────────────────────────────────────────────────────────────────
+buildEncGrid();
+buildRetGrid();
+buildSVG();
+</script>
+</body>
+</html>

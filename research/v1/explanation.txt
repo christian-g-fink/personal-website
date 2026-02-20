@@ -1,0 +1,2 @@
+Didn't really like the format with the main navigation bar in a sidebar, and then the subsidiary navigation bar separate.
+Better to have a dropdown menu, which is what I'll implement in the next version.

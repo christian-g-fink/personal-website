@@ -1,0 +1,61 @@
+<html>
+
+<head>
+	<title> Chris Fink, Ohio Wesleyan University </title>
+	<link rel="stylesheet" href="otherpages_style.css">
+	<script type="text/javascript" src="jquery-3.1.0.min.js"></script>
+</head>
+
+<body>
+	<div class="sidebar">
+		<div class="itembox">
+			<a href="../homepage/homepage.html">
+			Home
+			</a>
+		</div>
+		
+		<div class="itembox">
+			Teaching
+		</div>
+			
+		<div class="itembox">
+			Research
+		</div>
+
+		<div class="itembox">
+			CV
+		</div>	
+
+		<div class="itembox">
+			Personal
+		</div>		
+	</div>
+	
+	<div class="content">
+		<div class="pagetitle">
+			Research 
+		</div>
+		
+		<div class="nav">
+			<div class="selectednavoption">
+				Overview
+			</div>
+			<div class="navoption">
+				Lab members
+			</div>
+			<div class="navoption">
+				Publications
+			</div>
+		</div>
+		
+		<div class="maintext">
+			Text here...
+		</div>
+	</div>
+	
+	<script type="text/javascript"> <!-- if content height is greater than sidebar height, make sidebar height equal to content height -->
+		$(".sidebar").height(Math.max($(".content").height(),$(".sidebar").height())); <!-- http://stackoverflow.com/questions/6922755/html-css-full-height-sidebar -->
+	</script>
+</body>
+
+</html>
